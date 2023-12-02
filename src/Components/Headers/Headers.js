@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react';
+import logo from '../../Assets/Images/klee_icon.png';
 
 function Headers() {
+    // State for notification dropdown visibility
+    const [isNotificationDropdownOpen, setIsNotificationDropdownOpen] = useState(false);
+
+    // State for user dropdown visibility
+    const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+    // Method to toggle notification dropdown visibility
+    const toggleNotificationDropdown = () => {
+        setIsNotificationDropdownOpen(!isNotificationDropdownOpen);
+    };
+
+    // Method to toggle user dropdown visibility
+    const toggleUserDropdown = () => {
+        setIsUserDropdownOpen(!isUserDropdownOpen);
+    };
+
     return (
         <>
             {/* Navbar */}
@@ -46,11 +63,11 @@ function Headers() {
                         {/* LOGO */}
                         <a
                             href="/"
-                            className="flex items-center justify-between mr-4"
+                            className="flex items-center justify-between"
                         >
                             <img
-                                src=""
-                                className="mr-3 h-8"
+                                src={logo}
+                                className="h-12"
                                 alt="Logo"
                             />
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -61,7 +78,7 @@ function Headers() {
                     {/* RIGHT */}
                     <div className="flex items-center lg:order-2">
                         {/* SEARCH */}
-                        <form action="#" method="GET" className="hidden md:block md:pl-2">
+                        <form action="#" method="GET" className="hidden md:block md:pl-2 mr-0 lg:mr-4">
                             <label htmlFor="topbar-search" className="sr-only">
                                 Search
                             </label>
@@ -94,7 +111,7 @@ function Headers() {
                             type="button"
                             data-drawer-toggle="drawer-navigation"
                             aria-controls="drawer-navigation"
-                            className="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            className="hidden p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                         >
                             <span className="sr-only">Toggle search</span>
                             <svg
@@ -114,7 +131,7 @@ function Headers() {
                         {/* Notifications */}
                         <button
                             type="button"
-                            data-dropdown-toggle="notification-dropdown"
+                            onClick={toggleNotificationDropdown}
                             className="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                         >
                             <span className="sr-only">View notifications</span>
@@ -131,7 +148,8 @@ function Headers() {
                         </button>
                         {/* Dropdown menu */}
                         <div
-                            className="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
+                            className={`${isNotificationDropdownOpen ? 'absolute' : 'hidden'
+                                } overflow-hidden z-50 mt-24 -ml-12 lg:ml-0 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl`}
                             id="notification-dropdown"
                         >
                             <div className="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-600 dark:text-gray-300">
@@ -142,6 +160,7 @@ function Headers() {
                         {/* USERMENU */}
                         <button
                             type="button"
+                            onClick={toggleUserDropdown}
                             className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                             id="user-menu-button"
                             aria-expanded="false"
@@ -154,9 +173,10 @@ function Headers() {
                                 alt="user photo"
                             />
                         </button>
-                        {/* Dropdown menu */}
+                        {/* USER Dropdown menu */}
                         <div
-                            className="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+                            className={`${isUserDropdownOpen ? 'absolute' : 'hidden'
+                                } mt-96 z-50 my-4 w-56 -ml-24 lg:ml-0 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl`}
                             id="dropdown"
                         >
                             <div className="py-3 px-4">
