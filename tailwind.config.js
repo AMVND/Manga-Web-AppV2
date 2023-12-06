@@ -1,11 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
+  ],
+  plugins: [
+    require('flowbite/plugin')
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        sidebar: "300px auto", //for sidebar layout
+        "sidebar-collapsed": "64px auto", //for collapsed sidebar layout
+      },
+    },
   },
-  plugins: [],
-}
+};

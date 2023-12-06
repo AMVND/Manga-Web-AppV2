@@ -1,7 +1,21 @@
-export default function App() {
+import React from 'react';
+import Sidebar from './components/sidebar/SideBar';
+import Header from './components/header/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/header/Footer';
+
+
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <div className='h-full'>
+      <Header />
+      <div className='mt-24'>
+        <Sidebar />
+        <MainContent />
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default App;
